@@ -9,6 +9,7 @@ var timerId;
 var indexPosition = 0
 startButton.addEventListener('click', startGame)
 console.log(answerButton)
+
 var questions = [
     {
         question: "What is the second month in the year?",
@@ -52,7 +53,6 @@ function startGame() {
     timerId = setInterval(startTimer, 1000)
     startButton.classList.add('hide')
     questionContainerElement.classList.remove('hide');
-
     showQuestion()
     
 
@@ -62,6 +62,7 @@ function endGame() {
     if (startTime <= 0)
     window.prompt("Your time is up! Type your name and save your score.")
 }
+
 
 
 
@@ -89,12 +90,12 @@ var secondSection = document.getElementById("seconds")
 function startTimer() {
     if (startTime <= 0) {
         clearInterval(timerId)
+        window.location.reload();
     } else {
-      
         startTime--
         secondSection.textContent = startTime
-    
-    }
+        endGame();
+        }
 }
 
 function answerValidity() {

@@ -63,6 +63,12 @@ function startGame() {
 
 function endGame() {
     console.log('LOOOOOOOK I\'M INSIDE endGame NOW')
+
+    // stop the timer
+    // get the current value of timer
+    // alert window to input your initials
+    // save the timer value and initials to localStorage
+
     if (startTime <= 0)
         window.prompt("Your time is up! Type your name and save your score.")
 }

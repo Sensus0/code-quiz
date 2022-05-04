@@ -4,7 +4,7 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const answerButton = document.getElementsByClassName('answer-button')
-var startTime = 30
+var startTime = 500
 var timerId;
 var indexPosition = 0
 startButton.addEventListener('click', startGame)
@@ -53,14 +53,17 @@ function startGame() {
     timerId = setInterval(startTimer, 1000)
     startButton.classList.add('hide')
     questionContainerElement.classList.remove('hide');
+
     showQuestion()
-    
+
+
+
 
 }
 
 function endGame() {
     if (startTime <= 0)
-    window.prompt("Your time is up! Type your name and save your score.")
+        window.prompt("Your time is up! Type your name and save your score.")
 }
 
 
@@ -80,11 +83,14 @@ function showQuestion() {
 
     document.getElementById('c').textContent = questions[questionNumber].answers.c
     document.getElementById('c').onclick = answerValidity;
-    
+
     document.getElementById('d').textContent = questions[questionNumber].answers.d
     document.getElementById('d').onclick = answerValidity;
 
-}  
+    // questionNumber++
+    indexPosition++
+
+}
 
 var secondSection = document.getElementById("seconds")
 function startTimer() {
@@ -95,24 +101,31 @@ function startTimer() {
         startTime--
         secondSection.textContent = startTime
         endGame();
-        }
+    }
 }
 
 function answerValidity() {
     console.log(this.id)
     console.log(questions[questionNumber].correctAnswer)
-    if (this.id === questions[questionNumber].correctAnswer){
-        console.log('correctAnswer')
-        questionNumber++;
+    if (this.id === questions[questionNumber].correctAnswer && indexPosition <= questions.length) {
+
+        console.log('current index length is', questions.length)
+        // questionNumber++;
+
         showQuestion()
-    } else {
-        console.log('incorrectAnswer')
+        // indexPosition++
+
+    } else if (indexPosition < questions.length) {
+        console.log('ARRAY LENGTH', questions.length)
+        console.log('CURRENT INDEX VALUE', indexPosition)
         startTime -= 10;
         secondSection.textContent = startTime
         questionNumber++;
         showQuestion()
-        console.log(startTime)
+
+        console.log('HOLLLLLLA', startTime)
+    } else if (indexPosition === questions.length) {
+        console.log('ENDING GAME NOW')
+        endGame()
     }
 }
-
-

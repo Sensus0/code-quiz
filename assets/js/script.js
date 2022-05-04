@@ -62,6 +62,7 @@ function startGame() {
 }
 
 function endGame() {
+    console.log('LOOOOOOOK I\'M INSIDE endGame NOW')
     if (startTime <= 0)
         window.prompt("Your time is up! Type your name and save your score.")
 }
